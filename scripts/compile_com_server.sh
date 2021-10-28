@@ -19,7 +19,7 @@ echo "=     Build Com_server    ="
 echo "==========================="
 echo
 
-cd cyu/Com_server
+cd cyu_project_references/Com_server
 
 echo "Start building"
 sudo mkdir build
