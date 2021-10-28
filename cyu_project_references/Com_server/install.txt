@@ -1,0 +1,19 @@
+pour le drone:
+
+- installer mavlink: MAVSDK
+
+set(MAVLINK_LIB -I/lib/mavlink)
+
+-I/lib/mavlink
+
+
+serveur accessible via memoire partagee:
+- drone-CommunicationServer
+
+compilation: 
+cd build
+cmake ..
+make
+
+installation de la librairie blaar (clone)
+wget -O - https://git.u-cergy.fr/blaar/blaar/raw/master/developer_tools/clone_and_install_blaar_ubuntu.sh | bash

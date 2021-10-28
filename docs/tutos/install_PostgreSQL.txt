@@ -1,0 +1,71 @@
+// NOTE : toutes les commandes sont indiquées par le caractère '$'
+// installation libpqxx
+    0) Refresh de C++ et des outils nécéssaires
+        $ sudo apt install build-essential
+            ==> si vous faites "$ g++ --version", vous devriez avoir quelque chose comme 9.3.0 (en dessous ça pue, mais pas trop grave)
+        $ sudo apt-get install make
+
+    1) Installer postgresql et la lib de dev : 
+        $ sudo apt-get install posqtgresql postgresql-contrib
+            ==> j'ai la version 12
+            ==> posqtgresql-contrib ajoute des petits outils qui pourraient être utiles plus tard
+        $ sudo apt-get install postgresql-server-dev-12
+
+        NOTE : il faut lancer le service (chez moi, à chaque démarrage du pc)
+            $ sudo service postgresql start
+
+    1.5) Utiliser postgresql pour lancer l'exemple
+        a. il faut se connecter une premiere fois :
+            $ sudo -u postgres psql
+        b. on est dans une session psql, créer le user et la db de notre petite expérience
+            =# CREATE DATABASE testdb;
+            =# CREATE USER tester WITH ENCRYPTED PASSWORD 'testmdp';
+            =# GRANT ALL PRIVILEGES ON DATABASE testdb TO tester;
+            =# exit
+        c. On devrait pouvoir se connecter avec notre nouveau user et créer une table de test
+            $ psql -U tester -d testdb -h localhost
+            testdb=# CREATE TABLE test(
+                        id SERIAL PRIMARY KEY,
+                        name VARCHAR(20) NOT NULL,
+                        num_tel CHAR(10) NULL
+                    );
+            testdb=# \d test
+                ==> permet de voir les details de la table
+            testdb=# \q
+                ==> permet de quitter
+
+    2) cloner le repos suivant : https://github.com/jtv/libpqxx et aller dans son dossier
+        $ git clone https://github.com/jtv/libpqxx.git
+        $ cd libpqxx
+            ==> mettez-le pas n'importe-où bande de sagouins
+    
+    3) installer la lib
+            ==> devrait déjà être présent, mais ça fait pas de mal de mettre à jour
+        $ ./configure 
+            ==> ça a créé le dossier "include" qui nous sera utile plus tard
+            ==> ça a fait d'autres trucs
+        $ sudo make install
+            ==> prend du temps, c'est normal (le ventilo peut souffler un peu je pense)
+            ==> devrait avoir installé les libs dans /usl/local
+                POur en être sûr : $ whereis libpqxx
+
+    4) lancer !
+        Récupérer le fichier test.cpp du zip et mettez-le quelque part dans votre linux
+            ==> pour l'intégration avec vs code, on verra après (tout devrait être rouge, c'est normal)
+        $ g++ -g -std=c++17 [fichier source test.cpp] -o [out] -lpthread -lpqxx -lpq -Wall
+        $ ./[out]
+        
+            ==> Si tout se passe bien, on a :
+                Try to connect to database
+                Connected !
+                Selection done
+                Sleep ended !
+    
+    5) Le tout avec VS Code
+    Je vais assumer que vous avez un workspace propre et l'extension C/C++ installée (et uniquement celle-là pour c++ !)
+    
+        * Normalement, lancer via l'IDE génère des fichiers dans un dossier ".vscode", il y a dans le zip ce dossier, que vous pouvez copier / coller à la racine du dossier du workspace, toute la config est déjà faite, g++ inclus
+
+        * Copiez aussi le fichier test.cpp dans ce même workspace si ce n'est pas déjà fait
+
+        * Si vous faites CTRL+F5 avec le focus sur le fichier test.cpp, tout devrait se compiler et se lancer comme vous l'aviez fait en ligne de commande (mais en beaucoup moins chiant)
