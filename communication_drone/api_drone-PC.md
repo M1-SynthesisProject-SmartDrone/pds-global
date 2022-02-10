@@ -74,10 +74,10 @@ This permits to control the drone like a joystick could do.
 {
     "type": "MANUAL_CONTROL",
     "content": {
-        "forwardmove":  0.0,// -1.0 = backward,      1.0 = forward
-        "leftmove":     0.0,// -1.0 = left,          1.0 = right
-        "motorpower":   0.0,// -1.0 = min thrust,    1.0 = max thrust
-        "leftrotation": 0.0// -1.0 = clockwise,     1.0 = counter-clockwise
+        "x":  0.0,  // -1.0 = backward,      1.0 = forward
+        "y":  0.0,  // -1.0 = left,          1.0 = right
+        "z":  0.0,  // -1.0 = min thrust,    1.0 = max thrust
+        "r":  0.0   // -1.0 = clockwise,     1.0 = counter-clockwise
     }
 }
 
