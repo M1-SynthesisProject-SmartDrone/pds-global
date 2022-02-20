@@ -41,30 +41,23 @@ If a reponse is returned, it will have this shape :
 
 ## Controlling the drone
 
-#### Arming / disarming drone (should return response)
+#### Arming & launching the drone
+
+In order to start to use the drone, only one command must be sent :
 
 ```json
 {
-    "type": "ARM",
+    "type": "START_DRONE",
     "content": {
-        "armDrone": true
+        "startDrone": true // false
     }
 }
 ```
-- "true" arms the drone, "false" disarms it
 
-#### Takeoff / landing (should return response)
-```json
-{
-    "type": "TAKEOFF",
-    "content": {
-        "takeOff": true / false
-    }
-}
-
-```
-- "true" start drone engines, "false" make drone landing
-- The drone must be armed before trying to call this command
+- If startDrone is set to "true", the drone will try to arm and be ready to fly
+- "false" does nothing
+- The user have 10 seconds to takeoff the drone (putting motor thrusts at a value >= 62.5%)
+- In order to stop it, one simply have to land the drone, the disarm is automatic
 
 #### Manual control
 
@@ -80,10 +73,25 @@ This permits to control the drone like a joystick could do.
         "r":  0.0   // -1.0 = clockwise,     1.0 = counter-clockwise
     }
 }
-
 ```
 - All values are ranged between -1.0 and 1.0
 
+#### Record flights
+
+This single action permits to start and stop flight recording
+
+```json
+{
+    "type": "RECORD",
+    "content": {
+        "record": true // false
+    }
+}
+```
+> This message will trigger a response
+
+- "true" will start recording or throw an error if drone is unarmed
+- "false" will stop the recording (only if one was started)
 
 # Ground station
 
@@ -113,6 +121,20 @@ So, we just need to work a bit on the received number in order to use it.
         "vy": 12, // Ground speed (cm/s)
         "vz": 3, // Ground speed (cm/s)
         "yawRotation": 45 // Drone rotation (cdeg)
+    }
+}
+```
+
+## Drone state
+
+Periodically, the drone will send a message indicating if it is armed or not. This message is re-sent to the application.
+This message could have more content than motors state after time.
+
+```json
+{
+    "type": "DRONE_STATE",
+    "content": {
+        "armed": true // false
     }
 }
 ```
