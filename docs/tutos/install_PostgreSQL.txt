@@ -30,9 +30,9 @@
                         num_tel CHAR(10) NULL
                     );
             testdb=# \d test
-                ==> permet de voir les details de la table
+                => permet de voir les details de la table
             testdb=# \q
-                ==> permet de quitter
+                => permet de quitter
 
     2) cloner le repos suivant : https://github.com/jtv/libpqxx et aller dans son dossier
         $ git clone https://github.com/jtv/libpqxx.git
@@ -69,3 +69,22 @@
         * Copiez aussi le fichier test.cpp dans ce même workspace si ce n'est pas déjà fait
 
         * Si vous faites CTRL+F5 avec le focus sur le fichier test.cpp, tout devrait se compiler et se lancer comme vous l'aviez fait en ligne de commande (mais en beaucoup moins chiant)
+    
+    6) Installer PostGIS
+    Cette extension permet de pouvoir gérer des coordonnées spatiales (même système qu'Oracle). Cependant c'est pas activé par défaut
+        * Installer postgis, sur Ubuntu (et POP OS normalement),
+            $ sudo apt-get install postgis
+            
+    * Il faut ensuite dire à la BDD que l'on veut activer l'extension pour elle (SUPERADMIN UIQUEMENT)
+            $ sudo -u postgres psql
+            postgres=# \connect textdb
+            testdb=# CREATE EXTENSION postgis;
+            testdb=# SELECT PostGIS_version(); 
+        ==> La dernière commande permet juste de vérifier si ça a marché : elle devrait montrer quelque chose du type :
+                        postgis_version            
+            ---------------------------------------
+            3.0 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
+            (1 row)
+
+
+            
