@@ -38,6 +38,7 @@ If a reponse is returned, it will have this shape :
 }
 ```
 > A response is not garanteed to come directly after the call (this is up to the drone)
+> If a response is directly waited, the type of the message will be the same as the type of the request
 
 ## Connection / Acknoledgement
 
@@ -50,6 +51,7 @@ If the app wants to know if the server is here, it can send this message :
     }
 }
 ```
+
 > The response should come rapidly.
 
 ## Controlling the drone
