@@ -39,6 +39,20 @@ If a reponse is returned, it will have this shape :
 ```
 > A response is not garanteed to come directly after the call (this is up to the drone)
 
+## Connection / Acknoledgement
+
+If the app wants to know if the server is here, it can send this message :
+
+```json
+{
+    "type": "ACK",
+    "content": {
+        "test": "any wanted message here (not too long)"
+    }
+}
+```
+> The response should come rapidly.
+
 ## Controlling the drone
 
 #### Arming & launching the drone
