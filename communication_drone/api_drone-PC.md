@@ -47,7 +47,6 @@ If the app wants to know if the server is here, it can send this message :
 {
     "type": "ACK",
     "content": {
-        "test": "any wanted message here (not too long)"
     }
 }
 ```
