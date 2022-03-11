@@ -44,7 +44,8 @@ If the app wants to know if the server is here, it can send this message :
 {
     "type": "RESP_ACK",
     "content": {
-        "validated": true
+        "validated": true,
+        "message": ""
     }
 }
 ```
@@ -72,7 +73,8 @@ In order to start to use the drone, only one command must be sent :
 {
     "type": "RESP_START_DRONE",
     "content": {
-        "validated": true // false
+        "validated": true, // false
+        "message": ""
     }
 }
 ```
@@ -127,7 +129,8 @@ This single action permits to start and stop flight recording
 {
     "type": "RESP_RECORD",
     "content": {
-        "validated": true // false
+        "validated": true, // false
+        "message": ""
     }
 }
 ```
