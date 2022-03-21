@@ -178,3 +178,88 @@ So, we just need to work a bit on the received number in order to use it.
     }
 }
 ```
+
+# Handling paths
+
+## Get all paths
+
+#### Request 
+
+```json
+{
+    "type": "PATH_LIST",
+    "content": {}
+}
+```
+
+#### Response
+```json
+{
+    "type": "RESP_PATH_GET",
+    "content": {
+        "paths": [
+            {
+                "name": "path n°1",
+                "id": 1,
+                "date": "2022-03-28",
+            },
+            ...
+        ]
+    }
+}
+```
+
+## Get a particular path
+
+#### Request
+
+```json
+{
+    "type": "PATH_ONE",
+    "content": {
+        "pathId": 1
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "type": "RESP_PATH_ONE",
+    "content": {
+        "id": 1,
+        "name": "path n°1",
+        "date": "2022...",
+        "positions": {
+            "lat": "12.3456789",
+            "lon": "12.3456789"
+        }
+    }
+}
+```
+> If the path does not exist, an empty content will be sent
+
+## Launch a path
+
+#### Request
+
+```json
+{
+    "type": "PATH_LAUNCH",
+    "content": {
+        "pathId": 1
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "type": "RESP_PATH_LAUNCH",
+    "content": {
+        "validated": true
+    }
+}
+```
