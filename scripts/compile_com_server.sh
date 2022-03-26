@@ -9,8 +9,8 @@
 # this script
 
 # Before, check if we are in the right dir
-if [ "$(basename $(pwd))" != "ProjetSynthese" ]; then
-    echo "You are not in the right folder ! Go to the repository 'ProjetSynthese' and relaunch the script."
+if [ "$(basename $(pwd))" != "pds-global" ]; then
+    echo "You are not in the right folder ! Go to the repository 'pds-global' and relaunch the script."
     exit 1
 fi
 

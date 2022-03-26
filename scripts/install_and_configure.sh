@@ -16,8 +16,8 @@ set -o nounset  #Error if a variable is used but nont defined
 set -o pipefail #Error if a pipe fail
 
 # Before, check if we are in the right dir
-if [ "$(basename $(pwd))" != "ProjetSynthese" ]; then
-    echo "You are not in the right folder ! Go to the repository 'ProjetSynthese' and relaunch the script."
+if [ "$(basename $(pwd))" != "pds-global" ]; then
+    echo "You are not in the right folder ! Go to the repository 'pds-global' and relaunch the script."
     exit 1
 fi
 
@@ -55,10 +55,11 @@ echo "==========================="
 echo
 git clone https://github.com/jtv/libpqxx.git
 cd libpqxx
-sudo sh ./configure
+sudo mkdir build && cd build
+sudo cmake ..
 sudo make
 sudo make install
-cd ..
+cd ../..
 sudo rm -r libpqxx
 
 # Step 3 : MAVSDK
@@ -73,7 +74,7 @@ git submodule update --init --recursive
 cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -Bbuild/default -H.
 cmake --build build/default
 cd ..
-sudo rm -r 
+sudo rm -r MAVSDK
 
 # Step 4 : install blc libraries
 echo
