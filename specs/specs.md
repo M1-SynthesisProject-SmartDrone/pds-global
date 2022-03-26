@@ -46,8 +46,7 @@ La télémétrie disponible est une télémétrie très longue distance : rayon 
 
 ### 2.2. Caméra
 
-La caméra utilisée ([Indiquer le nom de la caméra]) envoie des images de résolution 640x480 (4:3) via télémétrie. La reception se fait via
-un Skydroid 5.8G OTG Receiver, recepteur que l'on peut connecter via usb-c sur un ordinateur.
+La caméra utilisée (Foxeer CAT 2) envoie des images de résolution 640x480 (4:3) via un transmetteur vidéo (TS852 32CH 5.8G) aux fréquences et canaux d'émission réglables. La reception se fait via un Skydroid 5.8G OTG Receiver, recepteur que l'on peut connecter via usb-c sur un ordinateur fonctionnant comme un carte d'acquisition vidéo.
 
 La taille des images dépend des informations sur celle-ci, sur 3 images prises (avec un taux de compression défini à 3), on a enregistré
 des tailles de 253, 263 et 283 kilo-octets (plus de tests de contraintes sont à prévoir)
