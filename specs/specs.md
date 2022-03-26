@@ -50,3 +50,9 @@ La caméra utilisée (Foxeer CAT 2) envoie des images de résolution 640x480 (4:
 
 La taille des images dépend des informations sur celle-ci, sur 3 images prises (avec un taux de compression défini à 3), on a enregistré
 des tailles de 253, 263 et 283 kilo-octets (plus de tests de contraintes sont à prévoir)
+
+### 2.3 Appli Mobile
+
+Une application mobile doit permettre de réaliser l'ensemble des opérations sur le drone, à savoir le pilotage manuel, le lancement des trajets automatiques ainsi que la consultation de l'historique, le tout sur un téléphone tournant sous Android.
+
+La communication avec le serveur central se fait via une communcation UDP et sous un format JSON. La communication se réalise toujours avec un format REQUÊTE -> REPONSE et chaque transmission doit recevoir sa réponse associée dans un délai de 100ms afin de garantir une bonne réactivité sur le pilotage du drone ainsi qu'une ergonomie correcte lors de la navigation entre les fenêtres.
