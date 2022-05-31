@@ -231,28 +231,13 @@ So, we just need to work a bit on the received number in order to use it.
         "id": 1,
         "name": "path n°1",
         "date": "2022...",
-        "positions": [
-                   {
-                       "lat": "12.3456789",
-                       "lon": "12.3456789"
-                   },
-                   {
-                       "lat": "12.3456120",
-                       "lon": "12.3456789"
-                   },
-                   {
-                       "lat": "12.3456120",
-                       "lon": "12.3456885"
-                   },
-                   {
-                       "lat": "12.3456789",
-                       "lon": "12.3456885"
-                   },
-                   {
-                       "lat": "12.3456789",
-                       "lon": "12.3456789"
-                   },
-        ]
+        "nbPoints": 210,
+        "nbCheckpoints": 50,
+        "departure": {
+            "lat": "12.3456789",
+            "lon": "12.3456789",
+            "alt": "202"
+        }
     }
 }
 ```
