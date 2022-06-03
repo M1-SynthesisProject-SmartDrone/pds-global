@@ -266,3 +266,102 @@ So, we just need to work a bit on the received number in order to use it.
     }
 }
 ```
+
+# In autopilot mode
+
+## Get informations (same as DRONE_INFOS)
+
+#### Request
+
+```json
+{
+    "type": "AUTOPILOT_INFOS",
+    "content": {}
+}
+```
+
+#### Response
+
+Response is the same as "RESP_DRONE_INFOS", but with more infos
+
+```json
+{
+    "type": "RESP_AUTOPILOT_INFOS",
+    "content": {
+        "armed": true,
+        "recording": false,
+        "batteryRemaining": 50, // (int) [0, 100]
+        "lat": 12345678, // (int, degE7)
+        "lon": 12345678, // (int, degE7)
+        "alt": 1223, // altitude above sea-level (mm)
+        "relativeAlt": 365, // altitude above ground (mm)
+        "vx": 34, // Ground speed (cm/s)
+        "vy": 12, // Ground speed (cm/s)
+        "vz": 3, // Ground speed (cm/s)
+        "yawRotation": 45, // Drone rotation (cdeg)
+        // NEW
+        "errorMode": false,
+        "waitForControl": false,
+        "manualControl": false,
+    }
+}
+```
+
+- If "errorMode" and "waitForControl" are both true, this means that the drone 
+is stopped and waits for the user to choose to continue or to take control
+
+- If user chose to resume, the "errorMode" will be re-set to false
+
+- If the user chose to take control, the "errorMode" will still be let to true 
+but the "waitForControl" will be set to false
+
+
+## Take control while in error mode
+
+#### Request
+
+```json
+{
+    "type": "REGAIN_CONTROL",
+    "content": {}
+}
+```
+
+#### Response
+
+```json
+{
+    "type": "RESP_REGAIN_CONTROL",
+    "content": {
+        "validated": true,
+        "message": ""
+    }
+}
+```
+
+After that, you can manual control the drone like before, 
+and register is automatically done. Be careful to still use "AUTOPILOT_INFOS" request
+
+## Resume the autopilot
+
+#### Request
+
+```json
+{
+    "type": "RESUME_AUTOPILOT",
+    "content": {}
+}
+```
+
+#### Response
+
+```json
+{
+    "type": "RESP_RESUME_AUTOPILOT",
+    "content": {
+        "validated": true,
+        "message": ""
+    }
+}
+```
+
