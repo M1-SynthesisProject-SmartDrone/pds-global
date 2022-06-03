@@ -300,8 +300,8 @@ Response is the same as "RESP_DRONE_INFOS", but with more infos
         "vz": 3, // Ground speed (cm/s)
         "yawRotation": 45, // Drone rotation (cdeg)
         // NEW
+        "running": true, // The autopilot part is running (when false, the trip is ended)
         "errorMode": false,
-        "waitForControl": false,
         "manualControl": false,
     }
 }
