@@ -217,7 +217,7 @@ So, we just need to work a bit on the received number in order to use it.
 {
     "type": "PATH_ONE",
     "content": {
-        "pathId": 1
+        "id": 1
     }
 }
 ```
@@ -251,7 +251,7 @@ So, we just need to work a bit on the received number in order to use it.
 {
     "type": "PATH_LAUNCH",
     "content": {
-        "pathId": 1
+        "id": 1
     }
 }
 ```
